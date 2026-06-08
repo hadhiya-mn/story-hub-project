@@ -1,0 +1,325 @@
+{% include 'admin_header.html' %}
+{% load static %}
+
+<style>
+
+.main-content{
+    margin-left:250px;
+    padding:30px;
+    background:#f1f5f9;
+    min-height:100vh;
+}
+
+.page-title{
+    margin-bottom:30px;
+}
+
+.page-title h2{
+    font-weight:700;
+    color:#0f172a;
+    font-size:34px;
+}
+
+.blog-card{
+    background:white;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 6px 20px rgba(0,0,0,0.08);
+    transition:0.3s ease;
+    height:100%;
+    border:1px solid #e2e8f0;
+}
+
+.blog-card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 12px 28px rgba(0,0,0,0.12);
+}
+
+.blog-img{
+    width:100%;
+    max-height:400px;
+    object-fit:contain;
+    background:#e2e8f0;
+    padding:12px;
+}
+
+.blog-body{
+    padding:24px;
+}
+
+.author-box{
+    display:flex;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.author-img{
+    width:75px;
+    height:75px;
+    border-radius:50%;
+    object-fit:cover;
+    border:3px solid #cbd5e1;
+    box-shadow:0 3px 10px rgba(0,0,0,0.1);
+}
+
+.author-info{
+    margin-left:15px;
+}
+
+.author-info h5{
+    margin:0;
+    font-size:20px;
+    font-weight:700;
+    color:#0f172a;
+}
+
+.author-info p{
+    margin:0;
+    color:#64748b;
+    font-size:14px;
+}
+
+.blog-title{
+    font-size:26px;
+    font-weight:700;
+    color:#1e293b;
+    margin-bottom:15px;
+}
+
+.blog-content{
+    color:#475569;
+    line-height:1.8;
+    font-size:15px;
+}
+
+.stats{
+    display:flex;
+    gap:15px;
+    margin-top:20px;
+    margin-bottom:20px;
+    flex-wrap:wrap;
+}
+
+.stat-box{
+    background:#f8fafc;
+    padding:12px 18px;
+    border-radius:12px;
+    font-weight:700;
+    color:#1e293b;
+    box-shadow:0 2px 8px rgba(0,0,0,0.05);
+}
+
+.comments-box{
+    background:#f8fafc;
+    padding:18px;
+    border-radius:14px;
+    margin-top:15px;
+}
+
+.comments-box h6{
+    font-size:18px;
+    font-weight:700;
+    color:#0f172a;
+}
+
+.comment{
+    background:white;
+    padding:14px;
+    border-radius:12px;
+    margin-bottom:12px;
+    border-left:4px solid #2563eb;
+    box-shadow:0 2px 8px rgba(0,0,0,0.04);
+}
+
+.comment-user{
+    font-weight:700;
+    color:#0f172a;
+    margin-bottom:5px;
+}
+
+.no-comments{
+    color:#94a3b8;
+    margin:0;
+}
+
+.delete-btn{
+    margin-top:25px;
+    width:100%;
+    padding:14px 20px;
+    border:none;
+    border-radius:14px;
+    background:linear-gradient(135deg,#ef4444,#dc2626);
+    color:white;
+    font-weight:700;
+    font-size:16px;
+    text-decoration:none;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    transition:0.3s ease;
+    box-shadow:0 6px 15px rgba(220,38,38,0.25);
+}
+
+.delete-btn:hover{
+    background:linear-gradient(135deg,#dc2626,#b91c1c);
+    transform:translateY(-2px);
+    box-shadow:0 10px 20px rgba(220,38,38,0.35);
+    color:white;
+}
+
+.delete-btn:active{
+    transform:scale(0.98);
+}
+
+.delete-icon{
+    font-size:18px;
+}
+
+@media(max-width:992px){
+
+    .main-content{
+        margin-left:0;
+        padding:20px;
+    }
+
+    .blog-title{
+        font-size:22px;
+    }
+
+}
+
+</style>
+
+<div class="main-content">
+
+    <div class="page-title">
+
+        <h2>
+            All Blog Posts
+        </h2>
+
+    </div>
+
+    <div class="row">
+
+        {% for blog in blogs %}
+
+        <div class="col-lg-6 mb-4">
+
+            <div class="blog-card">
+
+                {% if blog.image %}
+
+                <img src="{{ blog.image.url }}"
+                     class="blog-img">
+
+                {% endif %}
+
+                <div class="blog-body">
+
+                    <div class="author-box">
+
+                        {% if blog.USER.userprofile.profile_pic %}
+
+                        <img src="{{ blog.USER.userprofile.profile_pic.url }}"
+                             class="author-img">
+
+                        {% else %}
+
+                        <img src="/static/assets/img/profile.png"
+                             class="author-img">
+
+                        {% endif %}
+
+                        <div class="author-info">
+
+                            <h5>
+                                {{ blog.USER.userprofile.name }}
+                            </h5>
+
+                            <p>
+                                Posted on {{ blog.created_at }}
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <h3 class="blog-title">
+                        {{ blog.title }}
+                    </h3>
+
+                    <p class="blog-content">
+                        {{ blog.content }}
+                    </p>
+
+                    <div class="stats">
+
+                        <div class="stat-box">
+                            ❤️ {{ blog.like_set.count }} Likes
+                        </div>
+
+                        <div class="stat-box">
+                            💬 {{ blog.comment_set.count }} Comments
+                        </div>
+
+                    </div>
+
+                    <div class="comments-box">
+
+                        <h6 class="mb-3">
+                            Comments
+                        </h6>
+
+                        {% for c in blog.comment_set.all %}
+
+                        <div class="comment">
+
+                            <div class="comment-user">
+                                {{ c.USER.username }}
+                            </div>
+
+                            <div>
+                                {{ c.comment }}
+                            </div>
+
+                        </div>
+
+                        {% empty %}
+
+                        <p class="no-comments">
+                            No comments yet
+                        </p>
+
+                        {% endfor %}
+
+                    </div>
+
+                    <a href="{% url 'admin_delete_blog' blog.id %}"
+                       class="delete-btn"
+                       onclick="return confirm('Are you sure you want to permanently delete this blog?')">
+
+                        <span class="delete-icon">
+                            🗑️
+                        </span>
+
+                        <span>
+                            Delete Blog
+                        </span>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+{% include 'footer.html' %}

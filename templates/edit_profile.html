@@ -1,0 +1,178 @@
+{% include 'user_header.html' %}
+{% load static %}
+
+<style>
+
+.edit-section{
+    background:#f1f5f9;
+    min-height:100vh;
+    padding:60px 0;
+}
+
+.edit-card{
+    background:white;
+    border-radius:20px;
+    padding:40px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.08);
+}
+
+.edit-title{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.edit-title h2{
+    font-weight:700;
+    color:#0f172a;
+}
+
+.profile-preview{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.profile-preview img{
+    width:130px;
+    height:130px;
+    border-radius:50%;
+    object-fit:cover;
+    border:4px solid #e2e8f0;
+}
+
+.form-control{
+    height:50px;
+    border-radius:10px;
+}
+
+textarea.form-control{
+    height:120px;
+}
+
+.save-btn{
+    width:100%;
+    height:50px;
+    border-radius:10px;
+    font-weight:600;
+}
+
+</style>
+
+<div class="edit-section">
+
+    <div class="container">
+
+        <div class="row justify-content-center">
+
+            <div class="col-lg-6">
+
+                <div class="edit-card">
+
+                    <div class="edit-title">
+
+                        <h2>
+                            Edit Profile
+                        </h2>
+
+                    </div>
+
+                    <div class="profile-preview">
+
+                        {% if profile.profile_pic %}
+
+                        <img src="{{ profile.profile_pic.url }}">
+
+                        {% else %}
+
+                        <img src="/static/assets/img/profile.png">
+
+                        {% endif %}
+
+                    </div>
+
+                    <form method="POST"
+                          enctype="multipart/form-data">
+
+                        {% csrf_token %}
+
+                        <div class="mb-3">
+
+                            <label>
+                                Name
+                            </label>
+
+                            <input type="text"
+                                   name="name"
+                                   value="{{ profile.name }}"
+                                   class="form-control">
+
+                        </div>
+
+                        <div class="mb-3">
+
+                            <label>
+                                Phone
+                            </label>
+
+                            <input type="text"
+                                   name="phone"
+                                   value="{{ profile.phone }}"
+                                   class="form-control">
+
+                        </div>
+
+                        <div class="mb-3">
+
+                            <label>
+                                Place
+                            </label>
+
+                            <input type="text"
+                                   name="place"
+                                   value="{{ profile.place }}"
+                                   class="form-control">
+
+                        </div>
+
+                        <div class="mb-3">
+
+                            <label>
+                                Bio
+                            </label>
+
+                            <textarea name="bio"
+                                      class="form-control">{{ profile.bio }}</textarea>
+
+                        </div>
+
+                        <div class="mb-4">
+
+                            <label>
+                                Change Profile Picture
+                            </label>
+
+                            <input type="file"
+                                   name="profile_pic"
+                                   class="form-control">
+
+                        </div>
+
+                        <button type="submit"
+                                class="btn btn-primary save-btn">
+
+                            Save Changes
+
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% include 'footer.html' %}

@@ -1,0 +1,91 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+```
+<title>StoryHub Admin</title>
+
+<!-- Favicons -->
+<link href="{% static 'assets/img/favicon.png' %}" rel="icon">
+<link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+<!-- Vendor CSS Files -->
+<link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+<link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+<link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
+<link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+
+<!-- Main CSS File -->
+<link href="{% static 'assets/css/main.css' %}" rel="stylesheet">
+```
+
+</head>
+
+<body class="index-page">
+
+<header id="header" class="header d-flex align-items-center position-relative">
+
+```
+<div class="container position-relative d-flex align-items-center justify-content-between">
+
+    <!-- Logo -->
+    <a href="/admin_home" class="logo d-flex align-items-center me-auto me-xl-0">
+
+        <h1 class="sitename">
+            StoryHub Admin
+        </h1>
+
+    </a>
+
+    <!-- Navigation -->
+    <nav id="navmenu" class="navmenu">
+
+        <ul>
+
+            <li>
+                <a href="/admin_home">Dashboard</a>
+            </li>
+
+            <li>
+                <a href="/view_users">Users</a>
+            </li>
+
+            <li>
+                <a href="/viewblogs_admin">Blogs</a>
+            </li>
+
+            <li>
+                <a href="/logout">Logout</a>
+            </li>
+
+        </ul>
+
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+
+    </nav>
+
+    <!-- Admin Label -->
+    <div class="header-social-links d-flex align-items-center">
+
+        <span class="fw-semibold text-primary">
+            Admin Panel
+        </span>
+
+    </div>
+
+</div>
+```
+
+</header>

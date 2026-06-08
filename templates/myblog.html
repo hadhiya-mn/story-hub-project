@@ -1,0 +1,347 @@
+{% include 'user_header.html' %}
+{% load static %}
+
+<style>
+
+.blog-section{
+    padding:60px 0;
+    background:#f5f7fa;
+    min-height:100vh;
+}
+
+.blog-card{
+    background:#fff;
+    border-radius:15px;
+    overflow:hidden;
+    box-shadow:0 4px 15px rgba(0,0,0,.08);
+    transition:.3s;
+}
+
+.blog-card:hover{
+    transform:translateY(-5px);
+}
+
+.blog-img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+}
+
+.blog-body{
+    padding:18px;
+}
+
+.blog-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.blog-title{
+    font-weight:700;
+    color:#1e3557;
+}
+
+.blog-title:hover{
+    color:#0d6efd;
+}
+
+.blog-content{
+    color:#555;
+    margin-top:10px;
+    min-height:80px;
+}
+
+.icon-links a{
+    text-decoration:none;
+    margin-left:12px;
+    font-size:18px;
+}
+
+.stats{
+    display:flex;
+    gap:25px;
+    margin-top:15px;
+    font-weight:600;
+}
+
+.stats a{
+    text-decoration:none;
+}
+
+.likes{
+    color:#d90429;
+}
+
+.comments-count{
+    color:#2b2d42;
+}
+
+.comment-section{
+    background:#f7f7f7;
+    padding:12px;
+    border-radius:10px;
+    margin-top:15px;
+}
+
+.comment-item{
+    display:flex;
+    align-items:flex-start;
+    margin-bottom:10px;
+}
+
+.avatar{
+    width:35px;
+    height:35px;
+    border-radius:50%;
+    background:#f4c95d;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:bold;
+    margin-right:10px;
+    overflow:hidden;
+}
+
+.avatar img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.comment-text{
+    font-size:15px;
+}
+
+.comment-form{
+    display:flex;
+    margin-top:15px;
+    gap:10px;
+}
+
+.comment-form input{
+    flex:1;
+    border-radius:20px;
+    border:1px solid #ccc;
+    padding:10px 15px;
+}
+
+.comment-form button{
+    border:none;
+    background:#0d6efd;
+    color:white;
+    border-radius:20px;
+    padding:10px 20px;
+}
+
+.page-title{
+    text-align:center;
+    margin-bottom:40px;
+}
+
+.page-title h2{
+    font-weight:700;
+    color:#1e3557;
+}
+
+.search-box{
+    margin:20px 0;
+}
+
+.search-box input{
+    width:300px;
+    padding:10px;
+    border:1px solid #ccc;
+    border-radius:6px;
+}
+
+.search-box button{
+    padding:10px 15px;
+    background:#23436b;
+    color:white;
+    border:none;
+    border-radius:6px;
+}
+
+</style>
+
+<div class="blog-section">
+
+<div class="container">
+
+<div class="page-title">
+
+<h2>My Blogs</h2>
+
+<div class="search-box">
+
+<form method="GET">
+
+<input type="text"
+       name="search"
+       placeholder="Search blogs">
+
+<button type="submit">
+Search
+</button>
+
+</form>
+
+</div>
+
+<a href="{% url 'user_addblog' %}"
+   class="btn btn-primary">
+    + Add New Blog
+</a>
+
+</div>
+
+<div class="row">
+
+{% for blog in blogs %}
+
+<div class="col-md-4 mb-4">
+
+<div class="blog-card">
+
+{% if blog.image %}
+
+<img src="{{ blog.image.url }}"
+     class="blog-img">
+
+{% endif %}
+
+<div class="blog-body">
+
+<div class="blog-header">
+
+<a href="{% url 'blog_detail' blog.id %}"
+   style="text-decoration:none;color:inherit;">
+
+<h4 class="blog-title">
+{{ blog.title }}
+</h4>
+
+</a>
+
+<div class="icon-links">
+
+<a href="{% url 'edit_blog' blog.id %}">
+✏️
+</a>
+
+<a href="{% url 'delete_blog' blog.id %}"
+   onclick="return confirm('Delete this blog?')">
+🗑️
+</a>
+
+</div>
+
+</div>
+
+<p class="blog-content">
+{{ blog.content|truncatewords:20 }}
+</p>
+
+<div class="stats">
+
+<a href="{% url 'like_blog' blog.id %}"
+   class="likes">
+
+❤️ {{ blog.like_set.count }} Like
+
+</a>
+
+<span class="comments-count">
+
+💬 {{ blog.comment_set.count }} Comments
+
+</span>
+
+</div>
+
+<div class="comment-section">
+
+{% for c in blog.comment_set.all %}
+
+<div class="comment-item">
+
+<div class="avatar">
+
+{% if c.USER.userprofile.profile_pic %}
+
+<img src="{{ c.USER.userprofile.profile_pic.url }}">
+
+{% else %}
+
+{{ c.USER.username|first|upper }}
+
+{% endif %}
+
+</div>
+
+<div class="comment-text">
+
+<strong>
+{{ c.USER.username }}
+</strong>
+
+<br>
+
+{{ c.comment }}
+
+</div>
+
+</div>
+
+{% empty %}
+
+<p>No comments yet</p>
+
+{% endfor %}
+
+<form method="POST"
+      action="{% url 'add_comment' blog.id %}"
+      class="comment-form">
+
+{% csrf_token %}
+
+<input type="text"
+       name="comment"
+       placeholder="Write a comment">
+
+<button type="submit">
+Comment
+</button>
+
+</form>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+{% empty %}
+
+<div class="col-12">
+
+<div class="alert alert-info text-center">
+
+No Blogs Found
+
+</div>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+</div>
+
+</div>
+
+{% include 'footer.html' %}

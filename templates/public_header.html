@@ -1,0 +1,97 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>StoryHub</title>
+
+  <!-- Favicons -->
+  <link href="{% static 'assets/img/favicon.png' %}" rel="icon">
+  <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS -->
+  <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+
+  <!-- Main CSS -->
+  <link href="{% static 'assets/css/main.css' %}" rel="stylesheet">
+
+</head>
+
+<body class="index-page">
+
+<header id="header" class="header d-flex align-items-center position-relative">
+
+  <div class="container position-relative d-flex align-items-center justify-content-between">
+
+    <!-- Logo -->
+    <a href="/" class="logo d-flex align-items-center me-auto me-xl-0">
+
+      <h1 class="sitename">
+        StoryHub
+      </h1>
+
+    </a>
+
+    <!-- Navigation -->
+    <nav id="navmenu" class="navmenu">
+
+      <ul>
+
+        <li>
+          <a href="/">Home</a>
+        </li>
+
+        <li>
+          <a href="/login">Login</a>
+        </li>
+
+        <li>
+          <a href="/user_register">Register</a>
+        </li>
+
+        <li>
+          <a href="/about/">About</a>
+        </li>
+
+      </ul>
+
+      <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+
+    </nav>
+
+    <!-- Social Icons -->
+    <div class="header-social-links">
+
+      <a href="#" class="twitter">
+        <i class="bi bi-twitter-x"></i>
+      </a>
+
+      <a href="#" class="facebook">
+        <i class="bi bi-facebook"></i>
+      </a>
+
+      <a href="#" class="instagram">
+        <i class="bi bi-instagram"></i>
+      </a>
+
+      <a href="#" class="linkedin">
+        <i class="bi bi-linkedin"></i>
+      </a>
+
+    </div>
+
+  </div>
+
+</header>

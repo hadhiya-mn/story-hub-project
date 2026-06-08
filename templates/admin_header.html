@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StoryHub Admin</title>
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:'Segoe UI',sans-serif;
+    }
+
+    body{
+      background:#f5f7fb;
+    }
+
+    /* Sidebar */
+
+    .sidebar{
+      position:fixed;
+      top:0;
+      left:0;
+      width:250px;
+      height:100vh;
+      background:#0f172a;
+      color:white;
+      padding-top:25px;
+      box-shadow:2px 0 10px rgba(0,0,0,0.1);
+    }
+
+    .sidebar h2{
+      text-align:center;
+      margin-bottom:35px;
+      font-size:28px;
+      color:#ffffff;
+    }
+
+    .sidebar ul{
+      list-style:none;
+    }
+
+    .sidebar ul li{
+      margin:8px 0;
+    }
+
+    .sidebar ul li a{
+      display:block;
+      padding:15px 25px;
+      color:white;
+      text-decoration:none;
+      font-size:16px;
+      transition:0.3s;
+    }
+
+    .sidebar ul li a:hover{
+      background:#1e293b;
+      padding-left:35px;
+    }
+
+    /* Main Content Area */
+
+    .main-content{
+      margin-left:250px;
+      padding:30px;
+    }
+
+    /* Dashboard Cards */
+
+    .cards{
+      display:flex;
+      gap:20px;
+      flex-wrap:wrap;
+      margin-top:20px;
+    }
+
+    .card{
+      background:white;
+      padding:25px;
+      border-radius:12px;
+      min-width:250px;
+      box-shadow:0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    .card h3{
+      color:#666;
+      margin-bottom:10px;
+    }
+
+    .card p{
+      font-size:32px;
+      font-weight:bold;
+      color:#0f172a;
+    }
+
+    .topbar{
+      background:white;
+      padding:20px;
+      border-radius:12px;
+      box-shadow:0 4px 12px rgba(0,0,0,0.08);
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+<div class="sidebar">
+
+    <h2>StoryHub</h2>
+
+    <ul>
+
+        <li>
+            <a href="/admin_home">📊 Dashboard</a>
+        </li>
+
+        <li>
+            <a href="/view_users">👥 Users</a>
+        </li>
+
+        <li>
+            <a href="/viewblogs_admin">📝 Blogs</a>
+        </li>
+
+        <li>
+            <a href="/logout">🚪 Logout</a>
+        </li>
+
+    </ul>
+
+</div>

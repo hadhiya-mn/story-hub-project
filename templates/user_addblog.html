@@ -1,0 +1,83 @@
+{% include 'user_header.html' %}
+  <!-- Blog Hero Section -->
+    <section id="blog-hero" class="blog-hero section">
+
+      <div class="container-fluid p-0" data-aos="fade">
+
+        <div class="blog-hero-slider swiper init-swiper">
+          <script type="application/json" class="swiper-config">
+            {
+              "loop": true,
+              "speed": 1000,
+              "effect": "fade",
+              "autoplay": {
+                "delay": 5000
+              },
+              "slidesPerView": 1,
+              "navigation": {
+                "nextEl": ".swiper-button-next",
+                "prevEl": ".swiper-button-prev"
+              }
+            }
+          </script>
+
+          <div class="swiper-wrapper">
+
+            <div class="swiper-slide">
+              <div class="blog-hero-item">
+                <img src="/static/assets/img/blog/hanna.jpg" alt="Blog Hero Image" class="img-fluid">
+                <div class="blog-hero-content">
+                <h1>Add Blog</h1>
+                <form method="POST" enctype="multipart/form-data">
+{% csrf_token %}
+
+<label>Title</label><br>
+<input type="text" name="title" class="form-control"><br><br>
+
+<label>Content</label><br>
+<textarea name="content" class="form-control"></textarea><br><br>
+
+<label>Image</label><br>
+<input type="file" name="image" class="form-control"><br><br>
+
+<button type="submit" class=" btn btn-primary">Add Blog</button>
+
+</form>
+
+                  </div>
+                  <a href="blog-details.html" class="read-more">Continue Reading <i class="bi bi-arrow-right"></i></a>
+                </div>
+              </div>
+            </div><!-- End slide item -->
+
+
+          </div>
+
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next"></div>
+
+        </div>
+
+      </div>
+
+    </section><!-- /Blog Hero Section -->
+
+
+
+<!-- <form method="POST" enctype="multipart/form-data">
+{% csrf_token %}
+
+<label>Title</label><br>
+<input type="text" name="title"><br><br>
+
+<label>Content</label><br>
+<textarea name="content"></textarea><br><br>
+
+<label>Image</label><br>
+<input type="file" name="image"><br><br>
+
+<button type="submit">Add Blog</button>
+
+</form> -->
+
+{% include 'footer.html' %}

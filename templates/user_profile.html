@@ -1,0 +1,100 @@
+{% include 'user_header.html' %}
+
+<style>
+
+.container{
+    padding:40px;
+}
+
+.profile-card{
+    max-width:800px;
+    margin:auto;
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 4px 10px rgba(0,0,0,.1);
+}
+
+.profile-img{
+    width:180px;
+    height:180px;
+    border-radius:50%;
+    object-fit:cover;
+    border:4px solid #23436b;
+}
+
+.profile-card h2{
+    margin-bottom:20px;
+}
+
+.profile-card p{
+    margin:10px 0;
+    font-size:18px;
+}
+
+</style>
+
+<div class="container">
+
+    <div class="profile-card">
+
+        <div class="row align-items-center">
+
+            <!-- Left Side -->
+
+            <div class="col-md-4 text-center">
+
+                {% if profile.profile_pic %}
+
+                    <img src="{{ profile.profile_pic.url }}"
+                         class="profile-img">
+
+                {% else %}
+
+                    <img src="/static/assets/img/profile.png"
+                         class="profile-img">
+
+                {% endif %}
+
+                <br><br>
+
+                <a href="{% url 'update_profile_pic' %}"
+                   class="btn btn-outline-primary">
+                    Change Picture
+                </a>
+
+            </div>
+
+            <!-- Right Side -->
+
+            <div class="col-md-8">
+
+                <div class="profile-card">
+
+    <h2>My Profile</h2>
+
+    <p><strong>Name:</strong> {{ profile.name }}</p>
+
+    <p><strong>Email:</strong> {{ profile.email }}</p>
+
+    <p><strong>Phone:</strong> {{ profile.phone }}</p>
+
+    <p><strong>Place:</strong> {{ profile.place }}</p>
+
+    <p><strong>Bio:</strong> {{ profile.bio }}</p>
+
+    <a href="{% url 'edit_profile' %}"
+       class="btn btn-primary mt-3">
+
+        Edit Profile
+
+    </a>
+
+</div>
+        </div>
+
+    </div>
+
+</div>
+
+{% include 'footer.html' %}

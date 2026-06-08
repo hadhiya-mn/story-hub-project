@@ -1,0 +1,30 @@
+{% include 'user_header.html' %}
+
+<div class="container mt-5">
+
+    <div class="card p-4 shadow">
+
+        <h2>Update Profile Picture</h2>
+
+        <form method="POST" enctype="multipart/form-data">
+
+            {% csrf_token %}
+
+            <input type="file"
+                   name="profile_pic"
+                   class="form-control">
+
+            <br>
+
+            <button type="submit"
+                    class="btn btn-primary">
+                Upload
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% include 'footer.html' %}

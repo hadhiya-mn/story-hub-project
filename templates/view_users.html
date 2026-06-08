@@ -1,0 +1,72 @@
+{% include 'admin_header.html' %}
+
+<div class="main-content">
+
+    <div class="topbar">
+        <h1>Registered Users</h1>
+        <p>Manage all users registered on StoryHub</p>
+    </div>
+
+    <div class="card">
+
+        <table class="user-table">
+
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Place</th>
+            </tr>
+
+            {% for i in users %}
+
+            <tr>
+                <td>{{ i.name }}</td>
+                <td>{{ i.email }}</td>
+                <td>{{ i.phone }}</td>
+                <td>{{ i.place }}</td>
+            </tr>
+
+            {% endfor %}
+
+        </table>
+
+    </div>
+
+</div>
+
+<style>
+
+.user-table{
+    width:100%;
+    border-collapse:collapse;
+    background:white;
+}
+
+.user-table th{
+    background:#0f172a;
+    color:white;
+    padding:15px;
+    text-align:left;
+}
+
+.user-table td{
+    padding:15px;
+    border-bottom:1px solid #ddd;
+}
+
+.user-table tr:hover{
+    background:#f8fafc;
+}
+
+.card{
+    background:white;
+    border-radius:12px;
+    overflow:hidden;
+    box-shadow:0 4px 12px rgba(0,0,0,0.08);
+}
+
+</style>
+
+</body>
+</html>

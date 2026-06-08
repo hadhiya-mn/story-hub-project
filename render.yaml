@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: storyhub
+    env: python
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn demoproject.wsgi:application"
+    envVars:
+      - key: DEBUG
+        value: False
