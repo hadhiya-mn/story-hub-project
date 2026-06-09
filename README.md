@@ -136,6 +136,10 @@ Through this project, I improved my understanding of:
 This project was created for learning and portfolio purposes to improve Django full-stack development skills.
 
 ---
+🎓 Internship Project
+This project was developed and enhanced as part of my Django full stack development learning and internship journey at Riss Technologies.
+
+
 
 ## 👩‍💻 Author
 
